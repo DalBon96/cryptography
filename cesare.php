@@ -132,18 +132,15 @@ function crypto_text($choice_text,$choice_code){//funzione per trasformare il te
 
     //CICLO FOR
     for($i=0;$i<count($this->arr_text);$i++){
-          $this->arr_text[$i]; //lista testo ARRAY
-          $ascii=ord($this->arr_text[$i]); //lista array convertito codice numerico ASCII
-          $conv=($ascii+$choice_code); //VARIABILE CREATA ALL'interno con Variabile $choice_code
-          $this->arr_text_2=str_split(chr($conv));//codice numerico ASCII convertito in testo CHIARO
+         echo $this->arr_text[$i]."--"; //lista testo ARRAY
+        echo $ascii=ord($this->arr_text[$i])."--"; //lista array convertito codice numerico ASCII
+          echo $conv=($ascii+$choice_code)."--"; //VARIABILE CREATA ALL'interno con Variabile $choice_code
+          echo $this->crypto=chr($conv)."\n";//codice numerico ASCII convertito in testo CHIARO
         //CI SONO RIUSCITO
     }
 
-    echo "\n\n";
-    for($j=0;$j<count($this->arr_text_2);$j++){
-        echo $this->arr_text_2[$j];
-    }
-    echo "\n\n";
+
+   
     
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
