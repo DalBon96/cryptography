@@ -3,6 +3,11 @@ error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE ^ E_DEPRECATED);
 //CIFRARIO DI CESARE
 class cesare{ //classe Cesare
 
+//////////////////////////////////////////////////////////
+//Testo CHIARO -------> TESTO CIFRATO -------> Testo CHIARO
+//variabile $text-------> variabile $crypto-------> variabile.....//ANCORA DA SCEGLIERE
+/////////////////////////////////////////////////////////
+
     public $code;//per inserire il numero
     //N. volte da spostare l'alfabeto
 
@@ -13,7 +18,13 @@ class cesare{ //classe Cesare
     public $arr_text; //VARIABILE D'AMBIENTE
     //per trasformare il testo scritto in array
 
+    public $arr_text_2; //VARIABILE D'AMBIENTE
+    //per trasformare il testo scritto in array
+
     public $directory; //random nomi
+
+    public $crypto; ////VARIABILE D'AMBIENTE
+    //testo CIFRATO-----cioè convertito e traslato in codie ASCII
 
 function intro(){
     $b="\n\n";
@@ -87,7 +98,8 @@ function insert_text($code2){
 }
 
 function confirm_directory($text_upper,$code3,$directory){
-    $text_upper2=strtoupper($text_upper);
+    $text_upper2=strtoupper($text_upper); //da minuscolo a MAIUSCOLO
+    //funzione strtoupper(testo_minuscolo)
 
     //conferma testo
     echo "\n\n│Confermare DIRETTIVA N: "."__► ".$directory."_".$code3." ◄__  ?\n". 
@@ -120,16 +132,19 @@ function crypto_text($choice_text,$choice_code){//funzione per trasformare il te
 
     //CICLO FOR
     for($i=0;$i<count($this->arr_text);$i++){
-         echo $this->arr_text[$i]."==>"; //lista testo ARRAY
-         echo $ascii=ord($this->arr_text[$i])."==>"; //lista array convertito codice numerico ASCII
-         echo $conv=($ascii+$choice_code)."==>"; //VARIABILE CREATA ALL'interno con Variabile $choice_code
-         echo chr($conv)."\n";//codice numerico ASCII convertito in testo CHIARO
+          $this->arr_text[$i]; //lista testo ARRAY
+          $ascii=ord($this->arr_text[$i]); //lista array convertito codice numerico ASCII
+          $conv=($ascii+$choice_code); //VARIABILE CREATA ALL'interno con Variabile $choice_code
+          $this->arr_text_2=str_split(chr($conv));//codice numerico ASCII convertito in testo CHIARO
         //CI SONO RIUSCITO
     }
 
     echo "\n\n";
+    for($j=0;$j<count($this->arr_text_2);$j++){
+        echo $this->arr_text_2[$j];
+    }
+    echo "\n\n";
     
-
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
