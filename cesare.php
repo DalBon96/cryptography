@@ -144,7 +144,6 @@ function crypto_text($choice_text,$choice_code){//funzione per trasformare il te
          //lista array convertito codice numerico ASCII
         //VARIABILE CREATA ALL'interno con Variabile $choice_code
         //codice numerico ASCII convertito in testo CHIARO
-      //CI SONO RIUSCITO
   }
 
    
