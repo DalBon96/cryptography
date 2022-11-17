@@ -131,14 +131,21 @@ function crypto_text($choice_text,$choice_code){//funzione per trasformare il te
     $this->arr_text=str_split($choice_text);
 
     //CICLO FOR
-    for($i=0;$i<count($this->arr_text);$i++){
-         echo $this->arr_text[$i]."--"; //lista testo ARRAY
-        echo $ascii=ord($this->arr_text[$i])."--"; //lista array convertito codice numerico ASCII
+    /*for($i=0;$i<count($this->arr_text);$i++){
+          echo $this->arr_text[$i]."--"; //lista testo ARRAY
+          echo $ascii=ord($this->arr_text[$i])."--"; //lista array convertito codice numerico ASCII
           echo $conv=($ascii+$choice_code)."--"; //VARIABILE CREATA ALL'interno con Variabile $choice_code
           echo $this->crypto=chr($conv)."\n";//codice numerico ASCII convertito in testo CHIARO
         //CI SONO RIUSCITO
-    }
+    }*/
 
+    for($i=0;$i<count($this->arr_text);$i++){ //CICLO FOR CHE MI STAMPA IL TESTO CRIPTATO
+        echo $this->crypto=chr((ord($this->arr_text[$i])+$choice_code)); //lista testo ARRAY
+         //lista array convertito codice numerico ASCII
+        //VARIABILE CREATA ALL'interno con Variabile $choice_code
+        //codice numerico ASCII convertito in testo CHIARO
+      //CI SONO RIUSCITO
+  }
 
    
     
