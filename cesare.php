@@ -26,6 +26,9 @@ class cesare{ //classe Cesare
     public $crypto; ////VARIABILE D'AMBIENTE
     //testo CIFRATO-----cioè convertito e traslato in codie ASCII
 
+    public $savedata;////VARIABILE D'AMBIENTE
+    //array salvato
+
 function intro(){
     $b="\n\n";
     $b.=" _____________________________________\n";
@@ -110,7 +113,7 @@ function confirm_directory($text_upper,$code3,$directory){
     //piccolo menu di scelta
         switch($confirm!="0"){
             case "1":   //testo criptato con passaggio valore scelto
-                        $this->crypto_text($text_upper2,$code3); //inserito ho il numero e il testo
+                        $this->crypto_text($text_upper2,$code3,$directory); //inserito ho il numero e il testo
                 break;
             case "0":   echo "Ritorno al menu di selezione del Valore...\n";
                         echo $this->insert_text($code3);//ritorno al menu di selezione TESTO
@@ -123,7 +126,7 @@ function confirm_directory($text_upper,$code3,$directory){
 
 
 /////METODO IMPORTANTE////////////////////////////////////////////////////////////////////////////
-function crypto_text($choice_text,$choice_code){//funzione per trasformare il testo in array
+function crypto_text($choice_text,$choice_code,$directory_2){//funzione per trasformare il testo in array
     ///E ALTRO......
 
     //str_split($testo) mi trasforma il testo in un array
@@ -139,11 +142,45 @@ function crypto_text($choice_text,$choice_code){//funzione per trasformare il te
         //CI SONO RIUSCITO
     }*/
 
-    for($i=0;$i<count($this->arr_text);$i++){ //CICLO FOR CHE MI STAMPA IL TESTO CRIPTATO
-        echo $this->crypto=chr((ord($this->arr_text[$i])+$choice_code)); //lista testo ARRAY
+   $this->savedata=array();
+   for($i=0;$i<count($this->arr_text);$i++){ //CICLO FOR CHE MI STAMPA IL TESTO CRIPTATO
+        //VARIABILE D'AMBIENTE $this->crypto MI STAMPA IL TESTO CONVERTITO
+        //ALL INTERNO DELLA VARIABILE TUTTE LE FUNZIONI SONO COMPRESSATE ALL'INTERNO
+
+        $this->crypto=chr((ord($this->arr_text[$i])+$choice_code))." "; //lista testo ARRAY
+
          //lista array convertito codice numerico ASCII
         //VARIABILE CREATA ALL'interno con Variabile $choice_code
         //codice numerico ASCII convertito in testo CHIARO
+
+        //salvo dentro un altro ARRAY
+        $this->savedata[]=$this->crypto;
+  }
+
+    foreach($this->savedata as $value=>$key){
+        echo $key;
+    }
+    
+  $this->print_crypto_text( $this->savedata,$choice_code,$directory_2);//funzione per stampare
+  //passo tutti i valori all'interno
+}
+
+  function print_crypto_text($crypto_2,$choice_code_2,$directory_3){ //funzione per stampare il testo CRIPTATO
+        echo "\n\nStampaggio Biglietto del testo criptato\n\n";
+        $crypto_print="_________________\n";
+        $crypto_print.="► ";
+        foreach($crypto_2 as $value=>$key){
+            $crypto_print.=$key;
+        }
+        $crypto_print.=" ◄\n";
+        $crypto_print.="Direttiva N: ".$directory_3."_".$choice_code_2."\n";
+        $crypto_print.="_________________\n";
+        
+        $handle=fopen($directory_3.$choice_code_2."_".rand(100,999).".txt","w");
+        fwrite($handle,$crypto_print);
+        fclose($handle);
+
+        return $crypto_print;
   }
 
    
@@ -152,7 +189,6 @@ function crypto_text($choice_text,$choice_code){//funzione per trasformare il te
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-}
 //istanzio l'oggetto
 $cesare=new cesare();
 //introduzione con testo
